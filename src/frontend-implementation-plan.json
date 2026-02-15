@@ -1,0 +1,900 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "DRAFT MASTER (Frontend): offline-first legal drafting practice tool",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create the core app shell with persistent navigation and routes for Draft, Learn, Portfolio, Skills, and Settings.",
+      "acceptanceCriteria": [
+        "App has a persistent navigation UI exposing Draft, Learn, Portfolio, Skills, Settings.",
+        "Each route renders a distinct page with placeholder-to-functional content as other requirements are implemented.",
+        "No user-facing text appears in languages other than English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the top-level app shell, route configuration, and persistent navigation for Draft, Learn, Portfolio, Skills, and Settings (English-only labels). Use shadcn-ui components (e.g., navigation, buttons, layout primitives) for consistent UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Wire the new App shell into the existing React entry point and ensure routing providers (if used) are mounted above pages."
+        },
+        {
+          "path": "frontend/src/pages/DraftPage.tsx",
+          "operation": "create",
+          "description": "Create the Draft landing page to host draft-type selection and progress summary (expanded by later requirements). Use shadcn-ui components for cards/badges; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/LearnPage.tsx",
+          "operation": "create",
+          "description": "Create the Learn page that links to tutorials, checklists, common mistakes, templates, clause library, and Before/After Gallery (implemented in later requirements). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PortfolioPage.tsx",
+          "operation": "create",
+          "description": "Create the Portfolio page placeholder and wire it to read from offline storage (implemented fully in REQ-12). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/SkillsPage.tsx",
+          "operation": "create",
+          "description": "Create the Skills page placeholder and wire it to read from offline storage (implemented fully in REQ-13). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/SettingsPage.tsx",
+          "operation": "create",
+          "description": "Create the Settings page placeholder and wire it to read/write local settings (implemented fully in REQ-20/21). Use shadcn-ui components for forms/dialogs; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Apply the Professional Legal Office theme (colors, fonts, responsive layout) across the app.",
+      "acceptanceCriteria": [
+        "Theme colors are used consistently for backgrounds, buttons, highlights, status badges, and charts.",
+        "Heading, body/UI, and editor fonts match the specification (or closest web-safe fallbacks if font loading fails).",
+        "Key flows (wizard, editor, compare view, portfolio) are usable on mobile widths without horizontal scrolling."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global theme tokens and base styles for the specified palette (cream/navy/burgundy/green/charcoal/gold), and define typography defaults for headings/body/editor. Include responsive layout helpers and print styles scaffolding (expanded in REQ-25)."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme mappings to expose the Professional Legal Office palette via CSS variables and add any needed typography/print utility support."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Load Merriweather and Source Sans Pro via web font links (with Georgia as editor fallback) and set base metadata for an English UI."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement the 8 draft-type tracks (Phase 1/Phase 2) with status badges derived from stored progress and entry into workflows.",
+      "acceptanceCriteria": [
+        "Draft type list is grouped by Phase 1 and Phase 2.",
+        "Each draft type displays a status badge derived from stored user progress.",
+        "User can enter a draft type’s workflow from the selection screen."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/draftTypes.ts",
+          "operation": "create",
+          "description": "Define the 8 draft types, phase grouping, and display metadata used throughout the UI (Draft selection, Learn resources, scenarios, templates)."
+        },
+        {
+          "path": "frontend/src/components/DraftTypeSelector.tsx",
+          "operation": "create",
+          "description": "Create the phase-grouped draft-type selection UI with NOT STARTED / IN PROGRESS / MASTERED badges derived from offline progress state. Use shadcn-ui components (cards/badges); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DraftPage.tsx",
+          "operation": "modify",
+          "description": "Render the DraftTypeSelector and navigate into the selected draft type workflow routes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement a 4-step per-draft-type workflow: Learn Structure, Guided Wizard to editable draft, Free Practice, and Compare & Improve with refine/resubmit loop.",
+      "acceptanceCriteria": [
+        "Within a draft type, user can navigate through Steps 1–4 and return to any step without losing progress.",
+        "Wizard output opens in an editable editor view before saving/submitting.",
+        "Free Practice Mode provides a blank editor plus scenario prompt and a submit action.",
+        "Compare & Improve shows side-by-side drafts and allows returning to the editor to refine and resubmit."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/draftType/DraftTypeLayout.tsx",
+          "operation": "create",
+          "description": "Create a draft-type workflow layout with step navigation (Steps 1–4) and shared state loading/saving from offline storage. Use shadcn-ui navigation/tabs components as appropriate; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/StructureTutorialPage.tsx",
+          "operation": "create",
+          "description": "Create Step 1 page wrapper that renders the selected draft type’s structure/anatomy tutorial content (Legal Notice implemented in REQ-5; others can be minimal initially). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/GuidedWizardPage.tsx",
+          "operation": "create",
+          "description": "Create Step 2 wizard runner that collects answers and generates draft text, then routes into the editor with generated content. Use shadcn-ui form components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/FreePracticePage.tsx",
+          "operation": "create",
+          "description": "Create Step 3 scenario selection + blank drafting entry into the editor, preserving scenario metadata. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/CompareImprovePage.tsx",
+          "operation": "create",
+          "description": "Create Step 4 compare UI wrapper that consumes the latest submission feedback and supports refine/resubmit loop. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire draft-type workflow routes (draft type + step routes) into the main router, ensuring pages are navigable and not orphaned."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build the Legal Notice track end-to-end as the reference implementation (tutorial + annotated model, wizard, free practice scenario, compare issue types).",
+      "acceptanceCriteria": [
+        "Legal Notice Step 1 shows the anatomy sections and an annotated model notice with section highlights/explanations.",
+        "Legal Notice wizard collects the specified fields and generates a formatted notice (header, subject, salutation, facts, breach, demand, deadline, consequences, closing).",
+        "Legal Notice free practice shows the provided ABC/XYZ scenario and a blank editor.",
+        "Legal Notice compare view can surface the example issue types when the user draft lacks those elements."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/legalNotice.ts",
+          "operation": "create",
+          "description": "Add Legal Notice-specific content: anatomy sections + essential elements list, annotated model notice content/annotations, wizard question set, sample free-practice scenario (ABC/XYZ), and a model draft for comparison."
+        },
+        {
+          "path": "frontend/src/components/tutorial/InteractiveAnatomyTutorial.tsx",
+          "operation": "create",
+          "description": "Implement an interactive anatomy/structure tutorial component with essential elements list and an annotated model view with highlightable sections. Use shadcn-ui components (accordion/tabs/cards); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/wizard/LegalNoticeWizard.tsx",
+          "operation": "create",
+          "description": "Implement the Legal Notice guided Q&A wizard (notice type, parties, contract description, breach, breach date, demand, amount) and generate formatted notice text output for the editor. Use shadcn-ui form components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/StructureTutorialPage.tsx",
+          "operation": "modify",
+          "description": "Render the Legal Notice interactive tutorial + annotated model for the Legal Notice draft type using the Legal Notice data module."
+        },
+        {
+          "path": "frontend/src/pages/draftType/GuidedWizardPage.tsx",
+          "operation": "modify",
+          "description": "Route Legal Notice Step 2 to the dedicated LegalNoticeWizard and pass generated draft text into the editor flow."
+        },
+        {
+          "path": "frontend/src/pages/draftType/FreePracticePage.tsx",
+          "operation": "modify",
+          "description": "Ensure Legal Notice free practice shows the provided ABC/XYZ scenario prompt and starts a blank editor attempt with that scenario metadata."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add an offline-first local data layer (browser storage) for XP/levels/achievements, progress, skill scores, and draft portfolio items.",
+      "acceptanceCriteria": [
+        "Refreshing the page retains drafts, scores, XP/levels, achievements, and skill scores.",
+        "App remains usable without network connectivity for drafting, reviewing, and portfolio browsing.",
+        "Stored data follows the user-provided structure (fields present and readable)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/storage/types.ts",
+          "operation": "create",
+          "description": "Define TypeScript types for offline state keys and values: userXP, userLevel, achievements, per-draft-type progress, skillScores (structural, legal, factual, language, completeness), and draftPortfolio items (type, scenario metadata, text, score, date, feedback entries)."
+        },
+        {
+          "path": "frontend/src/storage/localStore.ts",
+          "operation": "create",
+          "description": "Implement a localStorage-backed, offline-first persistence helper (get/set/merge, versioning/migrations, and safe parsing) for all required keys."
+        },
+        {
+          "path": "frontend/src/storage/useOfflineState.ts",
+          "operation": "create",
+          "description": "Provide React hooks to read/update offline state with minimal re-rendering and explicit write points for autosave, submit, achievements, and settings."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Initialize the offline store on app start (e.g., migrations/defaults) and make app-level state (settings toggles, current draft attempt context) available to pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement an editor experience with autosave (30s), explicit Save, and Submit for Review that creates a review attempt record.",
+      "acceptanceCriteria": [
+        "Editor autosaves at least every 30 seconds while the user is editing.",
+        "User can manually Save and see confirmation that the current version is stored.",
+        "Submit creates a new review/attempt entry used by Compare & Improve."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/editor/DraftEditor.tsx",
+          "operation": "create",
+          "description": "Create the drafting editor component (structured plain text or rich text) used by wizard-generated and free-practice drafts, with Save and Submit for Review actions. Use shadcn-ui buttons/toasts/dialogs; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useAutosave.ts",
+          "operation": "create",
+          "description": "Implement a 30-second autosave hook that persists draft content and attempt metadata to offline storage without blocking typing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/EditorPage.tsx",
+          "operation": "create",
+          "description": "Add an editor page route that hosts DraftEditor, loads the current attempt (wizard/free practice/challenge), and writes Save/Submit actions to the offline portfolio/attempt history."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the editor page into the router so wizard and free practice flows can navigate into it and back to Step 4 compare."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement a local automated feedback + scoring engine (no external AI) producing issues, suggestions, positives, overall score, and 5 sub-scores; persist results.",
+      "acceptanceCriteria": [
+        "Submitting a draft generates a structured feedback report (issues, suggestions, good points, score, sub-scores).",
+        "Feedback can detect at least: missing key sections, missing deadline phrases, overly weak demand phrases (e.g., “I request”), and missing legal basis placeholders when applicable (starting with Legal Notice).",
+        "Scores and sub-scores are persisted and reflected in Skills and Portfolio views."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/feedback/feedbackEngine.ts",
+          "operation": "create",
+          "description": "Implement the heuristic feedback/scoring engine that compares user submissions against per-type checklists and model drafts to produce issues/suggestions/positives, score (0–10), and 5 sub-scores."
+        },
+        {
+          "path": "frontend/src/feedback/legalNoticeHeuristics.ts",
+          "operation": "create",
+          "description": "Add Legal Notice-specific detectors (e.g., missing deadline clause, weak demand phrases, missing legal basis cues like Section 73 reference) and map them to structured feedback items."
+        },
+        {
+          "path": "frontend/src/storage/localStore.ts",
+          "operation": "modify",
+          "description": "Persist feedback reports, overall score, and sub-scores into the draftPortfolio attempt records and update rolling skillScores based on submissions."
+        },
+        {
+          "path": "frontend/src/pages/draftType/EditorPage.tsx",
+          "operation": "modify",
+          "description": "On Submit for Review, run the feedback engine locally, store the feedback/score/sub-scores, and navigate into Compare & Improve with model draft hidden until submission is complete."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Create side-by-side comparison UI (Your Draft vs Model Draft) with highlighting, refine/save/try-new actions, and hide model until submission.",
+      "acceptanceCriteria": [
+        "After submission, the compare page shows two columns (user and model) with highlighted segments tied to feedback items.",
+        "Before submission, the model draft text is not visible (only a placeholder/locked state).",
+        "Refine Draft brings the user back to editing the same attempt; Try New creates a new blank attempt."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/compare/DraftCompareView.tsx",
+          "operation": "create",
+          "description": "Implement the side-by-side compare UI with a locked model state pre-submission, visual highlighting tied to feedback items, and actions: Refine Draft, Save, Try New. Use shadcn-ui components (cards/badges/buttons); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/CompareImprovePage.tsx",
+          "operation": "modify",
+          "description": "Integrate DraftCompareView into Step 4, enforce model visibility rules (hidden until a submission exists), and wire refine/resubmit navigation back to the editor."
+        },
+        {
+          "path": "frontend/src/storage/localStore.ts",
+          "operation": "modify",
+          "description": "Ensure Try New creates a new attempt record for the same draft type/scenario and Save persists current attempt state from Compare where applicable."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Build a practice scenarios bank for each draft type (5+ per type) with difficulty levels and associated model drafts for comparison.",
+      "acceptanceCriteria": [
+        "Each of the 8 draft types has at least 5 selectable scenarios.",
+        "Each scenario shows a difficulty label and a complete fact pattern.",
+        "Each scenario has a model draft available for Compare & Improve (revealed only after submission)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/scenariosBank.ts",
+          "operation": "create",
+          "description": "Define at least 5 scenarios per draft type with difficulty (Basic/Intermediate/Advanced), full fact patterns, and associated model draft references."
+        },
+        {
+          "path": "frontend/src/components/scenarios/ScenarioPicker.tsx",
+          "operation": "create",
+          "description": "Create scenario selection UI with difficulty labels and fact pattern preview, used by Free Practice and Weekly Challenge flows. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/FreePracticePage.tsx",
+          "operation": "modify",
+          "description": "Integrate ScenarioPicker for all draft types, ensure selection carries scenario metadata into the editor and links to the correct model draft for post-submission comparison."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Create per-draft-type learning resources (Common Mistakes top 10 + Checklist) and integrate into Learn and drafting flows as non-destructive references.",
+      "acceptanceCriteria": [
+        "Each draft type has a Common Mistakes page/list with 10 items, each containing: why wrong, fix, example.",
+        "Each draft type has a checklist of essential elements.",
+        "Checklist and mistakes can be opened from drafting screens (non-destructive, returns to draft)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/learningResources.ts",
+          "operation": "create",
+          "description": "Add static Common Mistakes (10 per draft type) and checklists (essential elements) with why/fix/example fields and checklist prompts."
+        },
+        {
+          "path": "frontend/src/pages/learn/CommonMistakesPage.tsx",
+          "operation": "create",
+          "description": "Create a Learn subpage to browse Common Mistakes by draft type. Use shadcn-ui components (accordion/list/cards); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/learn/ChecklistPage.tsx",
+          "operation": "create",
+          "description": "Create a Learn subpage to browse checklists by draft type. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/drafting/ReferenceDrawer.tsx",
+          "operation": "create",
+          "description": "Add a non-destructive in-drafting reference UI (drawer/dialog) to open the checklist and common mistakes while drafting and return to the editor unchanged. Use shadcn-ui dialog/drawer components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/EditorPage.tsx",
+          "operation": "modify",
+          "description": "Wire ReferenceDrawer into the editor experience so students can consult checklist/mistakes while drafting."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register Learn sub-routes for Common Mistakes and Checklist pages and link them from LearnPage."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Implement My Draft Portfolio grouped by type with score/date, totals/average, open-to-edit/re-review, and export to PDF/plain text (per draft and Export All).",
+      "acceptanceCriteria": [
+        "Portfolio lists drafts grouped by draft type with score/date per entry and totals/average shown.",
+        "Clicking a portfolio item opens the draft with actions to edit and resubmit for feedback.",
+        "Export All produces a downloadable PDF containing all saved drafts; per-draft export to PDF and plain text is available."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/portfolio/PortfolioList.tsx",
+          "operation": "create",
+          "description": "Create the portfolio list UI grouped by draft type with totals/average, and entry actions (view/edit/resubmit/export). Use shadcn-ui components (tables/cards/buttons); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/utils/exporters.ts",
+          "operation": "create",
+          "description": "Implement client-side export helpers for plain text and PDF for a single draft and for Export All (aggregated). Ensure the PDF formatting integrates with Print Preview styles (REQ-25)."
+        },
+        {
+          "path": "frontend/src/pages/PortfolioPage.tsx",
+          "operation": "modify",
+          "description": "Load portfolio items from offline storage, render PortfolioList, wire click-to-open (edit/re-review) and export actions."
+        },
+        {
+          "path": "frontend/src/pages/draftType/EditorPage.tsx",
+          "operation": "modify",
+          "description": "Support opening an existing portfolio item in the editor and creating a new submission attempt for re-review."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Create Skills dashboard with progress bars for 5 skills, overall proficiency computed from recent submissions, and a simple submission history of score impacts.",
+      "acceptanceCriteria": [
+        "Skills page displays 5 labeled progress bars and an overall proficiency value.",
+        "Submitting drafts updates skill scores and overall proficiency.",
+        "User can view at least a basic history of past scores/sub-scores per submission."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/skills/SkillsDashboard.tsx",
+          "operation": "create",
+          "description": "Implement the Skills dashboard UI: 5 labeled progress bars (structural, legal, factual, language, completeness), overall proficiency %, and a basic history list of past submissions’ sub-scores. Use shadcn-ui components (progress, cards); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/utils/skillMath.ts",
+          "operation": "create",
+          "description": "Implement computations for overall proficiency and rolling skill aggregates based on recent submissions stored offline."
+        },
+        {
+          "path": "frontend/src/pages/SkillsPage.tsx",
+          "operation": "modify",
+          "description": "Render SkillsDashboard and bind it to persisted skillScores and submission history."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Add gamification: XP, levels (1–15 with titles), and achievements with specified names/triggers; update and persist based on actions.",
+      "acceptanceCriteria": [
+        "User XP and level persist offline and are updated after relevant events.",
+        "Level titles match the specified ranges.",
+        "Achievements are awarded according to the specified triggers and shown in the UI."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/gamification/levels.ts",
+          "operation": "create",
+          "description": "Define level thresholds (1–15) and the provided level titles, plus helpers to compute level from XP."
+        },
+        {
+          "path": "frontend/src/gamification/achievements.ts",
+          "operation": "create",
+          "description": "Define achievements with names and trigger rules, plus helpers to evaluate awarding based on stored events (guided completion, free practice completion, 9/10+ bonus, refine loop, weekly challenge completion, master all 8 draft types)."
+        },
+        {
+          "path": "frontend/src/components/gamification/AchievementsPanel.tsx",
+          "operation": "create",
+          "description": "Create an achievements UI panel to display earned achievements and badge visuals (wired to generated assets in REQ-26). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/storage/localStore.ts",
+          "operation": "modify",
+          "description": "Persist and update userXP, userLevel, and achievements earned; update them on relevant drafting events and submissions."
+        },
+        {
+          "path": "frontend/src/pages/DraftPage.tsx",
+          "operation": "modify",
+          "description": "Display a lightweight gamification summary (XP/level/next milestone) alongside draft progress, without adding new top-level routes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Implement mastery logic per draft type (MASTERED after 3 submissions >=8/10) and show status across the UI including Phase 1/2 progress summary.",
+      "acceptanceCriteria": [
+        "App marks a draft type as MASTERED after 3 submissions of that type with score >= 8.",
+        "Draft type selection and progress summary reflect the computed mastery state.",
+        "Progress summary distinguishes Phase 1 and Phase 2."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/mastery.ts",
+          "operation": "create",
+          "description": "Implement mastery computation based on stored portfolio attempts (count of submissions per type with score >= 8) and derive NOT STARTED / IN PROGRESS / MASTERED states."
+        },
+        {
+          "path": "frontend/src/components/ProgressSummary.tsx",
+          "operation": "create",
+          "description": "Create a Phase 1/Phase 2 progress summary component reflecting mastery state and counts. Use shadcn-ui components (cards/badges/progress); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/DraftTypeSelector.tsx",
+          "operation": "modify",
+          "description": "Use mastery computation to render accurate status badges for each draft type."
+        },
+        {
+          "path": "frontend/src/pages/DraftPage.tsx",
+          "operation": "modify",
+          "description": "Render ProgressSummary above/alongside the draft-type selection."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Add Weekly Challenge: show current weekly scenario, Accept flow, dedicated drafting/submission path, and award XP/badge with offline persistence.",
+      "acceptanceCriteria": [
+        "Weekly Challenge is visible from the home/dashboard area and has an Accept flow.",
+        "Completing a challenge submission awards 200 XP and records completion for the week.",
+        "Challenge completion status is persisted offline."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/weeklyChallenge.ts",
+          "operation": "create",
+          "description": "Define the current weekly challenge scenario (difficulty, description, associated draft type/scenario and model draft reference) and helper to rotate/identify the week."
+        },
+        {
+          "path": "frontend/src/components/challenge/WeeklyChallengeCard.tsx",
+          "operation": "create",
+          "description": "Create the Weekly Challenge UI card with Accept Challenge flow and completion status indicator. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DraftPage.tsx",
+          "operation": "modify",
+          "description": "Show WeeklyChallengeCard in the Draft dashboard area (homepage-style) without adding a new top-level navigation item."
+        },
+        {
+          "path": "frontend/src/pages/challenge/WeeklyChallengePage.tsx",
+          "operation": "create",
+          "description": "Create the dedicated weekly challenge drafting + submission flow that reuses the editor and compare steps while tracking challenge completion metadata. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Weekly Challenge page route and link to it from the WeeklyChallengeCard accept action."
+        },
+        {
+          "path": "frontend/src/storage/localStore.ts",
+          "operation": "modify",
+          "description": "Persist weekly challenge acceptance/completion status and apply the 200 XP award (and any associated achievement/badge progress) on completion."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Add special practice modes: voice-to-text drafting (with fallback) and timed drafting mode (default 30 minutes) for Free Practice and Weekly Challenge attempts.",
+      "acceptanceCriteria": [
+        "If the browser supports speech recognition, user can dictate into the draft editor; if not supported, the UI clearly indicates it and remains usable.",
+        "Timed mode shows remaining time, allows start/pause/reset, and does not lose draft content when the timer ends.",
+        "Timed mode can be enabled for a practice attempt and is stored with that attempt metadata."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useSpeechToText.ts",
+          "operation": "create",
+          "description": "Implement a speech recognition hook using browser capabilities (where available) with clear unsupported fallback state."
+        },
+        {
+          "path": "frontend/src/components/editor/VoiceControls.tsx",
+          "operation": "create",
+          "description": "Add voice-to-text controls UI (start/stop/unsupported message) that inserts dictated text into the editor content (append if cursor insertion is not feasible). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useDraftTimer.ts",
+          "operation": "create",
+          "description": "Implement timed drafting mode hook (default 30 minutes) with start/pause/reset and persistence of timer metadata on the attempt."
+        },
+        {
+          "path": "frontend/src/components/editor/TimedModePanel.tsx",
+          "operation": "create",
+          "description": "Create an exam-simulation UI panel showing remaining time and controls; ensure draft content remains intact when time expires. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/editor/DraftEditor.tsx",
+          "operation": "modify",
+          "description": "Integrate VoiceControls and TimedModePanel into the editor, respecting Settings toggles for enabling/disabling voice-to-text and timed mode defaults."
+        },
+        {
+          "path": "frontend/src/pages/draftType/FreePracticePage.tsx",
+          "operation": "modify",
+          "description": "Allow enabling timed mode for free-practice attempts and store the choice in attempt metadata passed to the editor."
+        },
+        {
+          "path": "frontend/src/pages/challenge/WeeklyChallengePage.tsx",
+          "operation": "modify",
+          "description": "Allow enabling timed mode for weekly challenge attempts and store the choice in attempt metadata passed to the editor."
+        }
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "summary": "Add collaborative review via share link: generate a shareable link for a draft attempt, shared view supports comments, token-based access, and owner revocation.",
+      "acceptanceCriteria": [
+        "Owner can generate a share link for a draft attempt; link includes an unguessable token.",
+        "Anyone with the link can view the shared draft and add comments; comments persist across refreshes.",
+        "Owner can revoke the link, after which the shared URL no longer displays the draft/comments."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/share/SharedDraftPage.tsx",
+          "operation": "create",
+          "description": "Create a shared draft view route that loads a shared draft by token (from URL), displays draft content and existing comments, and allows adding comments (no real-time requirement). Use shadcn-ui components for forms/lists; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/share/ShareControls.tsx",
+          "operation": "create",
+          "description": "Add share link controls for the owner on a draft attempt (generate link, copy link, revoke sharing). Use shadcn-ui components (buttons/dialogs/toasts); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useShareLink.ts",
+          "operation": "create",
+          "description": "Implement frontend calls to the canister-backed sharing functions exposed via the existing actor (generateShareLink/getDraftByShareLink/addComment/revokeShareLink) and handle errors gracefully. Use the existing authorization + Internet Identity hooks only as an optional enhancement; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/draftType/CompareImprovePage.tsx",
+          "operation": "modify",
+          "description": "Expose ShareControls from post-submission screens (e.g., compare/portfolio detail) so users can share a specific attempt after it exists."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the shared draft route (e.g., /share/:token) into the router so external visitors can access it without requiring sign-in, consistent with the share-link requirement."
+        }
+      ]
+    },
+    {
+      "id": "REQ-19",
+      "summary": "Add optional canister-backed sync hooks for shared links and optional backup while keeping offline-first behavior and no required sign-in.",
+      "acceptanceCriteria": [
+        "Offline-only usage remains fully functional (drafting, saving, reviewing, portfolio, skills, gamification).",
+        "Shared-link drafts/comments are stored server-side (canister) so they work across devices.",
+        "If the user signs in, data can be associated with their identity; if not signed in, local usage still works."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/storage/syncAdapter.ts",
+          "operation": "create",
+          "description": "Implement an optional sync adapter that (when enabled in Settings) uses the backend actor for sharing-related storage and optional backup, but defaults to offline-only behavior."
+        },
+        {
+          "path": "frontend/src/hooks/useActor.ts",
+          "operation": "modify",
+          "description": "Ensure the actor can be used in an anonymous (guest) mode for public share-link viewing/commenting while still supporting authenticated identity when the user opts in (do not block offline-first flows)."
+        },
+        {
+          "path": "frontend/src/pages/SettingsPage.tsx",
+          "operation": "modify",
+          "description": "Add UI to enable/disable online backup/sharing features and reflect disabled state in share-related UI. Use shadcn-ui form controls; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-20",
+      "summary": "Implement Settings: reset local data (confirm), export/import JSON backup, toggle voice-to-text, and toggle online backup/sharing UI availability.",
+      "acceptanceCriteria": [
+        "Settings includes Reset with confirmation that clears offline storage keys used by the app.",
+        "User can export data to a JSON file and import it back to restore state.",
+        "Toggles affect availability of voice-to-text and online backup/sharing UI."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/storage/backup.ts",
+          "operation": "create",
+          "description": "Implement export/import helpers for local data as a JSON file (serialize all app keys, validate on import, and restore state)."
+        },
+        {
+          "path": "frontend/src/storage/reset.ts",
+          "operation": "create",
+          "description": "Implement a single reset function that clears all DRAFT MASTER localStorage keys and restores defaults."
+        },
+        {
+          "path": "frontend/src/pages/SettingsPage.tsx",
+          "operation": "modify",
+          "description": "Build Settings UI: Reset with confirmation, export/import JSON backup, voice-to-text toggle, and online backup/sharing toggle. Use shadcn-ui components (alert-dialog, switches, inputs); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/storage/localStore.ts",
+          "operation": "modify",
+          "description": "Add a centralized list of storage keys and defaults so reset/export/import can reliably operate on the full offline-first dataset."
+        }
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "summary": "Add optional NEXUS integration: record mastery events, export as JSON, and optionally POST to a user-configurable endpoint (no hardcoded URLs).",
+      "acceptanceCriteria": [
+        "When mastery is achieved for a draft type, the app creates a mastery event record (type, date, evidence summary).",
+        "User can export mastery events as JSON from Settings.",
+        "If the user provides a custom endpoint URL, the app can POST mastery events to it; if none is provided, no network calls are made."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/integrations/nexus.ts",
+          "operation": "create",
+          "description": "Implement a NEXUS sync adapter that records mastery events locally and, when enabled + configured with a user-provided URL, sends events via fetch without hardcoding any external API URL."
+        },
+        {
+          "path": "frontend/src/storage/types.ts",
+          "operation": "modify",
+          "description": "Add a masteryEvents record type (type, date, evidence summary) and persist it offline for export and optional syncing."
+        },
+        {
+          "path": "frontend/src/storage/localStore.ts",
+          "operation": "modify",
+          "description": "On mastery state transitions (per REQ-15), create and persist a mastery event record without requiring network connectivity."
+        },
+        {
+          "path": "frontend/src/pages/SettingsPage.tsx",
+          "operation": "modify",
+          "description": "Add Settings fields to configure an optional NEXUS URL, enable/disable sending, and export mastery events as JSON. Use shadcn-ui form components; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-22",
+      "summary": "Provide in-app blank templates per draft type and support downloading templates as plain text and PDF, kept separate from scenarios/model drafts.",
+      "acceptanceCriteria": [
+        "Each draft type has a Templates section with at least one blank template.",
+        "User can download the template as plain text and PDF.",
+        "Templates are not automatically shown as model answers in compare mode."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/templates.ts",
+          "operation": "create",
+          "description": "Define at least one blank template per draft type, clearly labeled as a template and stored separately from scenarios and model drafts."
+        },
+        {
+          "path": "frontend/src/pages/learn/TemplatesPage.tsx",
+          "operation": "create",
+          "description": "Create a Templates browsing page by draft type with download actions (plain text and PDF). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/LearnPage.tsx",
+          "operation": "modify",
+          "description": "Add navigation/linking from Learn to the Templates section without adding new top-level nav items."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire TemplatesPage into Learn sub-routes."
+        },
+        {
+          "path": "frontend/src/utils/exporters.ts",
+          "operation": "modify",
+          "description": "Extend export helpers to support template PDF/plain text downloads using the same print-ready formatting system as drafts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "summary": "Create a Clause Library organized by draft type and purpose with copy-to-clipboard and insert-into-editor actions, including example clauses.",
+      "acceptanceCriteria": [
+        "Clause library UI supports filtering by draft type and purpose.",
+        "User can copy a clause to clipboard and/or insert it into the current draft at cursor position (or append if cursor insertion is not feasible).",
+        "Example clauses are present and searchable."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/clauseLibrary.ts",
+          "operation": "create",
+          "description": "Define starter standardized clauses organized by draft type and purpose, including the example Termination, Jurisdiction, and Force Majeure clauses."
+        },
+        {
+          "path": "frontend/src/pages/learn/ClauseLibraryPage.tsx",
+          "operation": "create",
+          "description": "Create Clause Library UI with filtering and search, and actions to copy/insert into the active editor context (append fallback). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/editor/InsertClauseButton.tsx",
+          "operation": "create",
+          "description": "Add an editor-integrated control to open/select clauses and insert them into the draft content (or append). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/editor/DraftEditor.tsx",
+          "operation": "modify",
+          "description": "Wire InsertClauseButton into the editor toolbar/controls and implement insertion behavior consistent with editor implementation."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire ClauseLibraryPage into Learn sub-routes and link it from LearnPage."
+        }
+      ]
+    },
+    {
+      "id": "REQ-24",
+      "summary": "Add a static Before/After Gallery in Learn with highlighted improvements (added clause, removed weak language, improved phrasing).",
+      "acceptanceCriteria": [
+        "Gallery displays paired examples (Before vs After) with visual highlighting.",
+        "Examples are accessible from Learn navigation.",
+        "Examples do not modify the user’s saved drafts."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/beforeAfterGallery.ts",
+          "operation": "create",
+          "description": "Add static paired examples (Before vs After) with structured highlight metadata (added/removed/improved) for rendering."
+        },
+        {
+          "path": "frontend/src/pages/learn/BeforeAfterGalleryPage.tsx",
+          "operation": "create",
+          "description": "Create the gallery UI showing paired drafts and visual highlights for improvements, explicitly read-only/static. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/LearnPage.tsx",
+          "operation": "modify",
+          "description": "Add links to the Before/After Gallery section from Learn."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Before/After Gallery route under Learn."
+        }
+      ]
+    },
+    {
+      "id": "REQ-25",
+      "summary": "Implement print-ready formatting and a Print Preview view for drafts; ensure PDF exports match formatting closely.",
+      "acceptanceCriteria": [
+        "A print preview view renders the draft with consistent legal-style formatting.",
+        "PDF exports match print preview formatting closely (margins, font sizing, spacing).",
+        "Print preview works for both wizard-generated and free-practice drafts."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/print/PrintPreview.tsx",
+          "operation": "create",
+          "description": "Create a print preview renderer that formats drafts with consistent margins, headings, and spacing suitable for legal documents (including editor font choice). Use shadcn-ui components for page chrome; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/print/PrintPreviewPage.tsx",
+          "operation": "create",
+          "description": "Add a dedicated Print Preview route that renders PrintPreview for any selected draft/attempt (wizard or free practice) and supports printing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add print media rules to ensure consistent legal-document formatting for print/PDF generation (margins, font sizes, spacing, header treatment)."
+        },
+        {
+          "path": "frontend/src/utils/exporters.ts",
+          "operation": "modify",
+          "description": "Align PDF export generation with Print Preview rendering/styling so the exported PDFs closely match the print preview output."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Print Preview route and add entry points from Portfolio and Compare/Editor flows to open print preview for a draft."
+        }
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "summary": "Include generated static visual assets (logo, badge set, favicon) and render them in the UI (header/home, achievements/challenges).",
+      "acceptanceCriteria": [
+        "Generated images exist in frontend/public/assets/generated and are referenced by the UI.",
+        "Header/home uses the DRAFT MASTER logo asset.",
+        "Achievements/challenge badges display using the generated badge/icon assets."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/draft-master-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated DRAFT MASTER logo asset as a static file for UI use."
+        },
+        {
+          "path": "frontend/public/assets/generated/badge-set-8.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated badge set asset as a static file for achievements and weekly challenge visuals."
+        },
+        {
+          "path": "frontend/public/assets/generated/draft-master-favicon.dim_128x128.png",
+          "operation": "create",
+          "description": "Add the generated favicon mark asset as a static file."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Reference the favicon asset at frontend/public/assets/generated/draft-master-favicon.dim_128x128.png in the document head."
+        },
+        {
+          "path": "frontend/src/components/AppHeader.tsx",
+          "operation": "create",
+          "description": "Create an app header that renders the logo from frontend/public/assets/generated/draft-master-logo.dim_512x512.png and includes primary navigation. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire AppHeader into the app shell and ensure Weekly Challenge and Achievements UI use the badge asset from frontend/public/assets/generated/badge-set-8.dim_256x256.png where appropriate."
+        },
+        {
+          "path": "frontend/src/components/gamification/AchievementsPanel.tsx",
+          "operation": "modify",
+          "description": "Render achievement badges using frontend/public/assets/generated/badge-set-8.dim_256x256.png (e.g., mapped sprite positions or simple display), while keeping the underlying achievement logic unchanged. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/challenge/WeeklyChallengeCard.tsx",
+          "operation": "modify",
+          "description": "Render a weekly challenge badge/visual using frontend/public/assets/generated/badge-set-8.dim_256x256.png. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

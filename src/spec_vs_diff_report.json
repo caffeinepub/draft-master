@@ -1,0 +1,97 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T03:04:02.721Z",
+  "summary": "The diff adds a full app shell with routes, draft-type workflow pages, offline editor with autosave + submit-for-review, a basic heuristic feedback engine for Legal Notice, a weekly challenge starter flow, and a Motoko backend implementing share-link draft/comment storage. Several requirements are only partially met or not evidenced, notably full scenarios coverage across 8 draft types and the required compare/highlighting + model-reveal behavior.",
+  "missing_requirements": [
+    {
+      "id": "REQ-9",
+      "requirement": "Side-by-side comparison UI must hide the model draft until after submission and provide highlighting tied to feedback items, plus quick actions Refine Draft, Save, and Try New.",
+      "reason": "Compare page always renders a \"Model Draft\" column and does not show evidence of per-feedback highlighting or the required quick actions (Refine Draft/Save/Try New). Also the scenarios' modelDraft values are placeholders rather than real model drafts to reveal after submission.",
+      "evidence": [
+        "frontend/src/pages/draftType/CompareImprovePage.tsx",
+        "frontend/src/data/scenariosBank.ts"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "requirement": "Practice Scenarios Bank: each of the 8 draft types must have at least 5 selectable scenarios across 3 difficulty levels, each with a full fact pattern and an associated model draft used for comparison.",
+      "reason": "The scenarios bank file defines only 5 scenarios total, all for the 'legal-notice' draft type. No scenarios are provided for the other 7 draft types, and modelDraft fields are placeholders rather than actual model drafts.",
+      "evidence": [
+        "frontend/src/data/scenariosBank.ts"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Automated feedback/scoring engine should review submitted drafts against per-draft-type checklist/model draft and generate issues/suggestions/positives, overall score (0–10), and 5 sub-scores, starting with Legal Notice detection of missing sections/deadline/weak demand/missing legal basis.",
+      "reason": "The feedback engine implements heuristic checks only for draftType === 'legal-notice'. There is no evidence of per-draft-type checklists/models being used for the other 7 draft types.",
+      "evidence": [
+        "frontend/src/feedback/feedbackEngine.ts"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Footer includes promotional attribution link to caffeine.ai with UTM parameters.",
+      "reason": "Not requested in the BuildRequest requirements or acceptance criteria and introduces third-party branding/linking.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "description": "Backend adds 'Native invite link and RSVP functionality' and user profile management unrelated to Draft Master drafting/share-link requirements.",
+      "reason": "BuildRequest asks for collaborative review via share link and optional sync; it does not request RSVP/invite-code flows or separate user profile CRUD.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AppHeader.tsx",
+    "frontend/src/components/DraftTypeSelector.tsx",
+    "frontend/src/components/ProgressSummary.tsx",
+    "frontend/src/components/challenge/WeeklyChallengeCard.tsx",
+    "frontend/src/data/draftTypes.ts",
+    "frontend/src/data/legalNotice.ts",
+    "frontend/src/data/scenariosBank.ts",
+    "frontend/src/feedback/feedbackEngine.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/DraftPage.tsx",
+    "frontend/src/pages/LearnPage.tsx",
+    "frontend/src/pages/PortfolioPage.tsx",
+    "frontend/src/pages/PrintPreviewPage.tsx",
+    "frontend/src/pages/SettingsPage.tsx",
+    "frontend/src/pages/SharedDraftPage.tsx",
+    "frontend/src/pages/SkillsPage.tsx",
+    "frontend/src/pages/challenge/WeeklyChallengePage.tsx",
+    "frontend/src/pages/draftType/CompareImprovePage.tsx",
+    "frontend/src/pages/draftType/DraftTypeLayout.tsx",
+    "frontend/src/pages/draftType/EditorPage.tsx",
+    "frontend/src/pages/draftType/FreePracticePage.tsx",
+    "frontend/src/pages/draftType/GuidedWizardPage.tsx",
+    "frontend/src/pages/draftType/StructureTutorialPage.tsx",
+    "frontend/src/pages/learn/BeforeAfterGalleryPage.tsx",
+    "frontend/src/pages/learn/ChecklistPage.tsx",
+    "frontend/src/pages/learn/ClauseLibraryPage.tsx",
+    "frontend/src/pages/learn/CommonMistakesPage.tsx",
+    "frontend/src/pages/learn/TemplatesPage.tsx",
+    "frontend/src/storage/localStore.ts",
+    "frontend/src/storage/types.ts",
+    "frontend/src/storage/useOfflineState.ts",
+    "frontend/src/utils/exporters.ts",
+    "frontend/src/utils/mastery.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

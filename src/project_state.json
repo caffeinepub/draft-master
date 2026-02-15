@@ -1,0 +1,350 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build \"DRAFT MASTER\": an interactive legal drafting practice tool for a BALLB student focused on learning-by-doing (structure tutorials, guided drafting wizards, free drafting, and compare/improve feedback) across 8 legal draft types, with portfolio, skill scoring, scenario bank, clause/template libraries, gamification, and optional NEXUS mastery-sync; designed to work offline with autosave and exports.",
+  "architectural_notes": [
+    "Offline-first web app with localStorage persistence for drafts, XP/level, skill scores, and completed/mastered draft types.",
+    "Autosave drafts every 30 seconds.",
+    "Export capability required: PDF and DOCX.",
+    "Mobile-responsive UI; can be implemented as a single HTML file or multi-file (e.g., template storage)."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimalist \"DRAFT MASTER\" logo in a professional legal office style (draft-master-logo.dim_512x512.png)\n- Set of 8 achievement/badge icons in a cohesive style (badge-set-8.dim_256x256.png)\n- Small app favicon mark derived from the logo (draft-master-favicon.dim_128x128.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-the-core-app-shell-for-draft-master-with-top-level-navigation-and-routes-for-draft-choose-draft-type-learn-structure-anatomy-tutorials-portfolio-saved-drafts-skills-skill-scoring-dashboard-and-settings-ensure-all-user-facing-text-is-in-english",
+      "title": "Create the core app shell for \"DRAFT MASTER\" with top-level navigation and routes for: Draft (choose draft type), Learn (structure/anatomy tutorials), Portfolio (saved drafts), Skills (skill scoring dashboard), and Settings. Ensure all user-facing text is in English.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-specified-professional-legal-office-visual-design-across-the-app-soft-cream-background-f5f5dc-navy-primary-001f3f-burgundy-secondary-800020-deep-green-success-2d5016-charcoal-text-36454f-gold-accents-b8860b-typography-using-merriweather-for-headings-source-sans-pro-for-ui-body-and-georgia-for-draft-editor-text-mobile-responsive-layout",
+      "title": "Apply the specified \"Professional Legal Office\" visual design across the app: soft cream background (#f5f5dc), navy primary (#001f3f), burgundy secondary (#800020), deep green success (#2d5016), charcoal text (#36454f), gold accents (#b8860b); typography using Merriweather for headings, Source Sans Pro for UI/body, and Georgia for draft editor text; mobile-responsive layout.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-8-draft-type-learning-tracks-organized-into-phase-1-legal-notice-loan-agreement-rent-agreement-service-agreement-police-complaint-fir-bail-application-and-phase-2-plaint-writ-petition-provide-a-draft-type-selection-screen-showing-phase-grouping-and-per-type-status-not-started-in-progress-mastered",
+      "title": "Implement the 8 draft-type learning tracks organized into Phase 1 (Legal Notice, Loan Agreement, Rent Agreement, Service Agreement, Police Complaint/FIR, Bail Application) and Phase 2 (Plaint, Writ Petition). Provide a draft-type selection screen showing phase grouping and per-type status: NOT STARTED / IN PROGRESS / MASTERED.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-for-each-draft-type-implement-the-4-step-workflow-1-learn-structure-tutorial-2-guided-drafting-wizard-q-a-that-generates-an-editable-formatted-draft-3-free-practice-mode-blank-drafting-from-scenario-4-compare-improve-side-by-side-user-vs-model-with-detected-issues-and-suggestions-with-a-refine-and-resubmit-loop",
+      "title": "For each draft type, implement the 4-step workflow: (1) Learn Structure tutorial, (2) Guided Drafting Wizard (Q&A) that generates an editable formatted draft, (3) Free Practice Mode (blank drafting from scenario), (4) Compare & Improve (side-by-side user vs model with detected issues and suggestions) with a refine-and-resubmit loop.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-legal-notice-content-end-to-end-as-the-reference-implementation-an-interactive-anatomy-structure-tutorial-with-essential-elements-list-an-annotated-model-notice-view-a-guided-wizard-matching-the-provided-legal-notice-question-set-notice-type-parties-contract-description-breach-breach-date-demand-amount-that-generates-a-properly-formatted-notice-free-practice-scenario-mode-with-the-provided-sample-scenario-and-compare-improve-showing-issues-like-missing-deadline-weak-demand-language-and-missing-legal-basis-as-applicable",
+      "title": "Build the Legal Notice content end-to-end as the reference implementation: an interactive anatomy/structure tutorial (with essential elements list) + an annotated model notice view; a Guided Wizard matching the provided Legal Notice question set (notice type, parties, contract description, breach, breach date, demand, amount) that generates a properly formatted notice; Free Practice scenario mode with the provided sample scenario; and Compare & Improve showing issues like missing deadline, weak demand language, and missing legal basis (as applicable).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-local-offline-first-data-layer-using-browser-storage-to-persist-userxp-userlevel-achievements-earned-per-draft-type-progress-skillscores-structural-legal-factual-language-completeness-and-draftportfolio-items-type-scenario-metadata-draft-text-score-date-feedback-entries",
+      "title": "Add a local, offline-first data layer using browser storage to persist: userXP, userLevel, achievements earned, per-draft-type progress, skillScores (structural, legal, factual, language, completeness), and draftPortfolio items (type, scenario metadata, draft text, score, date, feedback entries).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-drafting-editor-experience-for-both-wizard-generated-and-free-practice-drafts-including-editable-text-area-rich-text-or-structured-plain-text-autosave-every-30-seconds-to-offline-storage-explicit-save-action-and-submit-for-review-action-that-creates-a-review-attempt-record",
+      "title": "Implement a drafting editor experience for both wizard-generated and free-practice drafts, including: editable text area (rich text or structured plain text), autosave every 30 seconds to offline storage, explicit Save action, and Submit for Review action that creates a review attempt record.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-automated-feedback-and-scoring-engine-no-external-ai-services-that-reviews-a-submitted-draft-against-a-per-draft-type-checklist-and-model-draft-to-produce-detected-issues-e-g-missing-required-sections-weak-vague-phrases-missing-dates-amounts-formatting-problems-improvement-suggestions-positive-feedback-a-numeric-overall-score-0-10-and-5-sub-scores-for-the-core-skills-structural-clarity-legal-precision-factual-accuracy-language-quality-completeness",
+      "title": "Implement an automated feedback and scoring engine (no external AI services) that reviews a submitted draft against a per-draft-type checklist and model draft to produce: detected issues (e.g., missing required sections, weak/vague phrases, missing dates/amounts, formatting problems), improvement suggestions, positive feedback, a numeric overall score (0–10), and 5 sub-scores for the core skills (structural clarity, legal precision, factual accuracy, language quality, completeness).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-side-by-side-your-draft-vs-model-draft-comparison-ui-with-highlighting-for-detected-issues-and-quick-actions-refine-draft-returns-to-editor-with-current-text-save-and-try-new-starts-a-new-attempt-for-the-same-draft-type-scenario-model-drafts-must-remain-hidden-until-the-user-submits-for-review",
+      "title": "Create the side-by-side \"Your Draft vs Model Draft\" comparison UI with highlighting for detected issues and quick actions: Refine Draft (returns to editor with current text), Save, and Try New (starts a new attempt for the same draft type/scenario). Model drafts must remain hidden until the user submits for review.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-practice-scenarios-bank-for-each-draft-type-with-at-least-5-scenarios-per-draft-type-and-3-difficulty-levels-basic-intermediate-advanced-each-scenario-includes-a-full-fact-pattern-and-is-selectable-for-free-practice-each-has-an-associated-model-draft-used-for-comparison",
+      "title": "Build the Practice Scenarios Bank for each draft type with at least 5 scenarios per draft type and 3 difficulty levels (Basic/Intermediate/Advanced). Each scenario includes a full fact pattern and is selectable for Free Practice; each has an associated model draft used for comparison.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-per-draft-type-learning-resources-common-mistakes-top-10-with-why-how-to-fix-examples-and-a-checklist-did-you-include-x-integrate-these-into-the-learn-and-drafting-flows-so-the-student-can-consult-them-while-drafting",
+      "title": "Create per-draft-type learning resources: Common Mistakes (top 10 with why/how-to-fix/examples) and a Checklist (“Did you include X?”). Integrate these into the Learn and drafting flows so the student can consult them while drafting.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-my-draft-portfolio-showing-drafts-grouped-by-type-with-per-draft-score-and-date-totals-and-average-score-and-the-ability-to-open-a-draft-to-view-edit-re-review-add-an-export-all-action-that-exports-all-saved-drafts-as-a-single-pdf-and-also-supports-per-draft-export-to-pdf-and-plain-text",
+      "title": "Implement \"My Draft Portfolio\" showing drafts grouped by type, with per-draft score and date, totals and average score, and the ability to open a draft to view/edit/re-review. Add an \"Export All\" action that exports all saved drafts as a single PDF and also supports per-draft export to PDF and plain text.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-skills-dashboard-showing-visual-progress-bars-for-the-5-core-drafting-skills-and-an-overall-drafting-proficiency-percentage-computed-from-recent-submissions-allow-the-user-to-see-how-each-submission-affected-the-skill-scores-at-least-via-a-simple-history-list",
+      "title": "Create the Skills dashboard showing visual progress bars for the 5 core drafting skills and an overall drafting proficiency percentage computed from recent submissions. Allow the user to see how each submission affected the skill scores (at least via a simple history list).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-gamification-xp-levels-1-15-with-the-provided-titles-and-achievements-with-the-provided-names-and-triggers-update-xp-and-achievements-based-on-actions-completing-guided-draft-completing-free-practice-scoring-9-10-refining-and-improving-weekly-challenge-completion-and-mastering-all-8-draft-types",
+      "title": "Add gamification: XP, levels (1–15 with the provided titles), and achievements with the provided names and triggers. Update XP and achievements based on actions: completing guided draft, completing free practice, scoring 9/10+, refining and improving, weekly challenge completion, and mastering all 8 draft types.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-mastery-logic-per-draft-type-consider-a-draft-type-mastered-when-the-user-scores-at-least-8-10-on-3-separate-drafts-of-that-type-reflect-mastery-status-throughout-the-ui-including-the-homepage-style-progress-summary-for-phase-1-and-phase-2",
+      "title": "Implement mastery logic per draft type: consider a draft type \"MASTERED\" when the user scores at least 8/10 on 3 separate drafts of that type. Reflect mastery status throughout the UI, including the homepage-style progress summary for Phase 1 and Phase 2.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-weekly-challenge-feature-show-the-current-weekly-scenario-difficulty-description-allow-accept-challenge-provide-a-dedicated-drafting-submission-flow-and-award-the-specified-xp-plus-a-badge-achievement-progress-indicator-when-completed",
+      "title": "Add a Weekly Challenge feature: show the current weekly scenario (difficulty, description), allow \"Accept Challenge\", provide a dedicated drafting + submission flow, and award the specified XP plus a badge/achievement progress indicator when completed.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-special-practice-modes-a-voice-to-text-drafting-using-the-browser-s-speech-recognition-where-available-with-graceful-fallback-when-unsupported-b-timed-drafting-mode-with-a-configurable-default-30-minute-timer-and-an-exam-simulation-ui-that-can-be-used-in-free-practice-and-weekly-challenge-flows",
+      "title": "Add special practice modes: (a) Voice-to-text drafting using the browser’s speech recognition where available with graceful fallback when unsupported; (b) Timed drafting mode with a configurable default 30-minute timer and an exam-simulation UI that can be used in Free Practice and Weekly Challenge flows.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-collaborative-review-via-share-link-allow-a-user-to-generate-a-shareable-link-for-a-specific-draft-attempt-shared-view-allows-others-to-add-comments-suggestions-no-real-time-requirement-ensure-basic-access-control-via-an-unguessable-token-in-the-url-and-allow-the-owner-to-revoke-sharing",
+      "title": "Implement collaborative review via share link: allow a user to generate a shareable link for a specific draft attempt; shared view allows others to add comments/suggestions (no real-time requirement). Ensure basic access control via an unguessable token in the URL and allow the owner to revoke sharing.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-optional-canister-backed-sync-endpoints-to-support-shared-links-and-optionally-backup-of-drafts-progress-while-keeping-offline-first-behavior-the-app-must-function-fully-without-sign-in-if-internet-identity-is-used-it-should-only-enhance-cross-device-sync-and-ownership-of-shared-drafts",
+      "title": "Add optional canister-backed sync endpoints to support shared links and (optionally) backup of drafts/progress while keeping offline-first behavior. The app must function fully without sign-in; if Internet Identity is used, it should only enhance cross-device sync and ownership of shared drafts.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-settings-page-with-options-to-reset-all-local-data-with-confirmation-export-import-local-data-as-a-json-file-for-backup-toggle-voice-to-text-features-and-choose-whether-to-enable-online-backup-sharing-features",
+      "title": "Implement a Settings page with options to: reset all local data (with confirmation), export/import local data as a JSON file for backup, toggle voice-to-text features, and choose whether to enable online backup/sharing features.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-nexus-integration-as-an-optional-user-configurable-sync-adapter-when-a-draft-type-becomes-mastered-in-draft-master-8-10-on-3-drafts-record-a-mastery-event-that-can-be-exported-json-and-or-sent-to-a-configurable-endpoint-if-the-user-provides-one-in-settings-do-not-hardcode-any-external-api-url",
+      "title": "Add NEXUS integration as an optional, user-configurable sync adapter: when a draft type becomes MASTERED in Draft Master (>=8/10 on 3 drafts), record a \"mastery event\" that can be exported (JSON) and/or sent to a configurable endpoint if the user provides one in Settings. Do not hardcode any external API URL.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-templates-blank-formats-per-draft-type-in-app-and-allow-downloading-those-templates-as-plain-text-and-pdf-clearly-label-them-as-templates-and-keep-them-separate-from-the-practice-scenarios-and-model-drafts",
+      "title": "Provide templates (blank formats) per draft type in-app and allow downloading those templates as plain text and PDF. Clearly label them as templates and keep them separate from the practice scenarios and model drafts.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-clause-library-with-at-least-a-starter-set-of-standardized-clauses-organized-by-draft-type-and-purpose-supporting-copy-to-clipboard-and-insert-into-editor-actions-include-the-example-clauses-termination-jurisdiction-force-majeure-as-part-of-the-library",
+      "title": "Create a Clause Library with at least a starter set of standardized clauses organized by draft type and purpose, supporting copy-to-clipboard and insert-into-editor actions. Include the example clauses (Termination, Jurisdiction, Force Majeure) as part of the library.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-before-after-gallery-section-showing-at-least-a-few-examples-of-weak-vs-improved-drafts-with-highlighted-improvements-added-clause-removed-weak-language-improved-phrasing-keep-these-as-static-learning-examples-not-user-data",
+      "title": "Add a Before/After Gallery section showing at least a few examples of weak vs improved drafts with highlighted improvements (added clause, removed weak language, improved phrasing). Keep these as static learning examples (not user data).",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-print-ready-formatting-for-drafts-consistent-margins-headings-and-spacing-suitable-for-legal-documents-provide-a-print-preview-view-for-any-draft-and-ensure-exported-pdfs-use-the-same-formatting",
+      "title": "Implement print-ready formatting for drafts: consistent margins, headings, and spacing suitable for legal documents; provide a \"Print Preview\" view for any draft and ensure exported PDFs use the same formatting.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-static-visual-assets-for-the-app-logo-and-a-small-set-of-badges-icons-under-frontend-public-assets-generated-and-render-them-in-the-ui-logo-in-header-home-badges-in-achievements-challenges",
+      "title": "Generate and include static visual assets for the app (logo and a small set of badges/icons) under frontend/public/assets/generated, and render them in the UI (logo in header/home, badges in achievements/challenges).",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Support 8 draft-type learning tracks (Phase 1: Legal Notice, Loan Agreement, Rent Agreement, Service Agreement, Police Complaint/FIR, Bail Application; Phase 2: Plaint, Writ Petition)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Four-step learning workflow per draft type: Structure tutorial → Guided drafting wizard → Free practice mode → Compare & improve against model with feedback and scoring",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Interactive structure/anatomy tutorials with annotated model drafts",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Guided drafting wizard (TurboTax-style Q&A) that generates an editable, properly formatted draft",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Free practice mode with blank template + scenario prompt, submission for review, and autosave",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Side-by-side comparison view (user draft vs model) with AI-highlighted issues, suggestions, and resubmission loop",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Practice scenario bank (50+), with difficulty levels and model drafts hidden until submission",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Per-draft-type common mistakes database + checklists for required elements",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Draft portfolio/library: save, view, edit, re-practice; show counts, average scores; export all",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Skill tracking dashboard scoring 5 skills (structural clarity, legal precision, factual accuracy, language quality, completeness) with progress bars and overall proficiency",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Clause library (100+ clauses) organized by draft type/purpose with copy-paste building blocks",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Professional templates per draft type; downloads in Word/docx, plain text, and PDF",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Before/after gallery showing weak vs improved drafts with highlighted improvements",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Weekly challenge feature (complex scenarios) with rewards",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Gamification: XP, levels, and achievements; mastery defined as 8/10+ and milestones (e.g., Phase 1 mastered)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "NEXUS integration: mark draft type as MASTERED in NEXUS after scoring 8/10+ on 3 drafts of same type; sync progress",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Special modes: voice-to-text drafting, timed drafting (exam simulation), collaborative review via share link/comments",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Print-ready formatting with proper margins/letterhead and court-ready PDF export",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Mobile-responsive UI with professional legal office theme (specified color scheme and fonts)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Offline-first storage using localStorage for drafts/progress, including autosave every 30 seconds",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "DRAFT MASTER",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,9 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router configuration for all routes including draft workflows, learning resources, portfolio, skills, settings, shared drafts, and print preview.",
+  "frontend/src/pages/SharedDraftPage.tsx": "Page component for viewing and commenting on shared drafts via shareable links, integrating with the backend actor for fetching draft data and adding comments.",
+  "frontend/src/pages/PrintPreviewPage.tsx": "Print preview page that displays a draft in a print-ready format with proper styling and a print button.",
+  "frontend/src/utils/mastery.ts": "Utility functions for calculating draft mastery status and overall proficiency percentage from skill scores.",
+  "frontend/src/storage/localStore.ts": "Local storage management module handling offline-first persistence of user progress, drafts, achievements, skill scores, and mastery events with proper TypeScript typing.",
+  "frontend/src/index.css": "Global styles with OKLCH color system for professional legal office theme, custom fonts (Merriweather for headings, Source Sans Pro for body), and print media queries.",
+  "frontend/index.html": "HTML entry point with favicon, Google Fonts preload for Merriweather and Source Sans Pro, and root div for React mounting."
+}

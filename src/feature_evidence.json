@@ -1,0 +1,581 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-the-core-app-shell-for-draft-master-with-top-level-navigation-and-routes-for-draft-choose-draft-type-learn-structure-anatomy-tutorials-portfolio-saved-drafts-skills-skill-scoring-dashboard-and-settings-ensure-all-user-facing-text-is-in-english",
+      "featureTitle": "Create the core app shell for \"DRAFT MASTER\" with top-level navigation and routes for: Draft (choose draft type), Learn (structure/anatomy tutorials), Portfolio (saved drafts), Skills (skill scoring dashboard), and Settings. Ensure all user-facing text is in English.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/main.tsx",
+        "frontend/src/pages/DraftPage.tsx",
+        "frontend/src/pages/LearnPage.tsx",
+        "frontend/src/pages/PortfolioPage.tsx",
+        "frontend/src/pages/SettingsPage.tsx",
+        "frontend/src/pages/SkillsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-the-specified-professional-legal-office-visual-design-across-the-app-soft-cream-background-f5f5dc-navy-primary-001f3f-burgundy-secondary-800020-deep-green-success-2d5016-charcoal-text-36454f-gold-accents-b8860b-typography-using-merriweather-for-headings-source-sans-pro-for-ui-body-and-georgia-for-draft-editor-text-mobile-responsive-layout",
+      "featureTitle": "Apply the specified \"Professional Legal Office\" visual design across the app: soft cream background (#f5f5dc), navy primary (#001f3f), burgundy secondary (#800020), deep green success (#2d5016), charcoal text (#36454f), gold accents (#b8860b); typography using Merriweather for headings, Source Sans Pro for UI/body, and Georgia for draft editor text; mobile-responsive layout.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-8-draft-type-learning-tracks-organized-into-phase-1-legal-notice-loan-agreement-rent-agreement-service-agreement-police-complaint-fir-bail-application-and-phase-2-plaint-writ-petition-provide-a-draft-type-selection-screen-showing-phase-grouping-and-per-type-status-not-started-in-progress-mastered",
+      "featureTitle": "Implement the 8 draft-type learning tracks organized into Phase 1 (Legal Notice, Loan Agreement, Rent Agreement, Service Agreement, Police Complaint/FIR, Bail Application) and Phase 2 (Plaint, Writ Petition). Provide a draft-type selection screen showing phase grouping and per-type status: NOT STARTED / IN PROGRESS / MASTERED.",
+      "files": [
+        "frontend/src/components/DraftTypeSelector.tsx",
+        "frontend/src/data/draftTypes.ts",
+        "frontend/src/pages/DraftPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-for-each-draft-type-implement-the-4-step-workflow-1-learn-structure-tutorial-2-guided-drafting-wizard-q-a-that-generates-an-editable-formatted-draft-3-free-practice-mode-blank-drafting-from-scenario-4-compare-improve-side-by-side-user-vs-model-with-detected-issues-and-suggestions-with-a-refine-and-resubmit-loop",
+      "featureTitle": "For each draft type, implement the 4-step workflow: (1) Learn Structure tutorial, (2) Guided Drafting Wizard (Q&A) that generates an editable formatted draft, (3) Free Practice Mode (blank drafting from scenario), (4) Compare & Improve (side-by-side user vs model with detected issues and suggestions) with a refine-and-resubmit loop.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/draftType/CompareImprovePage.tsx",
+        "frontend/src/pages/draftType/DraftTypeLayout.tsx",
+        "frontend/src/pages/draftType/FreePracticePage.tsx",
+        "frontend/src/pages/draftType/GuidedWizardPage.tsx",
+        "frontend/src/pages/draftType/StructureTutorialPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-legal-notice-content-end-to-end-as-the-reference-implementation-an-interactive-anatomy-structure-tutorial-with-essential-elements-list-an-annotated-model-notice-view-a-guided-wizard-matching-the-provided-legal-notice-question-set-notice-type-parties-contract-description-breach-breach-date-demand-amount-that-generates-a-properly-formatted-notice-free-practice-scenario-mode-with-the-provided-sample-scenario-and-compare-improve-showing-issues-like-missing-deadline-weak-demand-language-and-missing-legal-basis-as-applicable",
+      "featureTitle": "Build the Legal Notice content end-to-end as the reference implementation: an interactive anatomy/structure tutorial (with essential elements list) + an annotated model notice view; a Guided Wizard matching the provided Legal Notice question set (notice type, parties, contract description, breach, breach date, demand, amount) that generates a properly formatted notice; Free Practice scenario mode with the provided sample scenario; and Compare & Improve showing issues like missing deadline, weak demand language, and missing legal basis (as applicable).",
+      "files": [
+        "frontend/src/data/legalNotice.ts",
+        "frontend/src/pages/draftType/FreePracticePage.tsx",
+        "frontend/src/pages/draftType/GuidedWizardPage.tsx",
+        "frontend/src/pages/draftType/StructureTutorialPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-local-offline-first-data-layer-using-browser-storage-to-persist-userxp-userlevel-achievements-earned-per-draft-type-progress-skillscores-structural-legal-factual-language-completeness-and-draftportfolio-items-type-scenario-metadata-draft-text-score-date-feedback-entries",
+      "featureTitle": "Add a local, offline-first data layer using browser storage to persist: userXP, userLevel, achievements earned, per-draft-type progress, skillScores (structural, legal, factual, language, completeness), and draftPortfolio items (type, scenario metadata, draft text, score, date, feedback entries).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/storage/localStore.ts",
+        "frontend/src/storage/types.ts",
+        "frontend/src/storage/useOfflineState.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-drafting-editor-experience-for-both-wizard-generated-and-free-practice-drafts-including-editable-text-area-rich-text-or-structured-plain-text-autosave-every-30-seconds-to-offline-storage-explicit-save-action-and-submit-for-review-action-that-creates-a-review-attempt-record",
+      "featureTitle": "Implement a drafting editor experience for both wizard-generated and free-practice drafts, including: editable text area (rich text or structured plain text), autosave every 30 seconds to offline storage, explicit Save action, and Submit for Review action that creates a review attempt record.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/draftType/EditorPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-an-automated-feedback-and-scoring-engine-no-external-ai-services-that-reviews-a-submitted-draft-against-a-per-draft-type-checklist-and-model-draft-to-produce-detected-issues-e-g-missing-required-sections-weak-vague-phrases-missing-dates-amounts-formatting-problems-improvement-suggestions-positive-feedback-a-numeric-overall-score-0-10-and-5-sub-scores-for-the-core-skills-structural-clarity-legal-precision-factual-accuracy-language-quality-completeness",
+      "featureTitle": "Implement an automated feedback and scoring engine (no external AI services) that reviews a submitted draft against a per-draft-type checklist and model draft to produce: detected issues (e.g., missing required sections, weak/vague phrases, missing dates/amounts, formatting problems), improvement suggestions, positive feedback, a numeric overall score (0–10), and 5 sub-scores for the core skills (structural clarity, legal precision, factual accuracy, language quality, completeness).",
+      "files": [
+        "frontend/src/feedback/feedbackEngine.ts",
+        "frontend/src/pages/draftType/EditorPage.tsx",
+        "frontend/src/storage/localStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-the-side-by-side-your-draft-vs-model-draft-comparison-ui-with-highlighting-for-detected-issues-and-quick-actions-refine-draft-returns-to-editor-with-current-text-save-and-try-new-starts-a-new-attempt-for-the-same-draft-type-scenario-model-drafts-must-remain-hidden-until-the-user-submits-for-review",
+      "featureTitle": "Create the side-by-side \"Your Draft vs Model Draft\" comparison UI with highlighting for detected issues and quick actions: Refine Draft (returns to editor with current text), Save, and Try New (starts a new attempt for the same draft type/scenario). Model drafts must remain hidden until the user submits for review.",
+      "files": [
+        "frontend/src/pages/draftType/CompareImprovePage.tsx",
+        "frontend/src/storage/localStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-practice-scenarios-bank-for-each-draft-type-with-at-least-5-scenarios-per-draft-type-and-3-difficulty-levels-basic-intermediate-advanced-each-scenario-includes-a-full-fact-pattern-and-is-selectable-for-free-practice-each-has-an-associated-model-draft-used-for-comparison",
+      "featureTitle": "Build the Practice Scenarios Bank for each draft type with at least 5 scenarios per draft type and 3 difficulty levels (Basic/Intermediate/Advanced). Each scenario includes a full fact pattern and is selectable for Free Practice; each has an associated model draft used for comparison.",
+      "files": [
+        "frontend/src/data/scenariosBank.ts",
+        "frontend/src/pages/draftType/FreePracticePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-per-draft-type-learning-resources-common-mistakes-top-10-with-why-how-to-fix-examples-and-a-checklist-did-you-include-x-integrate-these-into-the-learn-and-drafting-flows-so-the-student-can-consult-them-while-drafting",
+      "featureTitle": "Create per-draft-type learning resources: Common Mistakes (top 10 with why/how-to-fix/examples) and a Checklist (“Did you include X?”). Integrate these into the Learn and drafting flows so the student can consult them while drafting.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/draftType/EditorPage.tsx",
+        "frontend/src/pages/learn/ChecklistPage.tsx",
+        "frontend/src/pages/learn/CommonMistakesPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-my-draft-portfolio-showing-drafts-grouped-by-type-with-per-draft-score-and-date-totals-and-average-score-and-the-ability-to-open-a-draft-to-view-edit-re-review-add-an-export-all-action-that-exports-all-saved-drafts-as-a-single-pdf-and-also-supports-per-draft-export-to-pdf-and-plain-text",
+      "featureTitle": "Implement \"My Draft Portfolio\" showing drafts grouped by type, with per-draft score and date, totals and average score, and the ability to open a draft to view/edit/re-review. Add an \"Export All\" action that exports all saved drafts as a single PDF and also supports per-draft export to PDF and plain text.",
+      "files": [
+        "frontend/src/pages/PortfolioPage.tsx",
+        "frontend/src/pages/draftType/EditorPage.tsx",
+        "frontend/src/utils/exporters.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-the-skills-dashboard-showing-visual-progress-bars-for-the-5-core-drafting-skills-and-an-overall-drafting-proficiency-percentage-computed-from-recent-submissions-allow-the-user-to-see-how-each-submission-affected-the-skill-scores-at-least-via-a-simple-history-list",
+      "featureTitle": "Create the Skills dashboard showing visual progress bars for the 5 core drafting skills and an overall drafting proficiency percentage computed from recent submissions. Allow the user to see how each submission affected the skill scores (at least via a simple history list).",
+      "files": [
+        "frontend/src/pages/SkillsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-gamification-xp-levels-1-15-with-the-provided-titles-and-achievements-with-the-provided-names-and-triggers-update-xp-and-achievements-based-on-actions-completing-guided-draft-completing-free-practice-scoring-9-10-refining-and-improving-weekly-challenge-completion-and-mastering-all-8-draft-types",
+      "featureTitle": "Add gamification: XP, levels (1–15 with the provided titles), and achievements with the provided names and triggers. Update XP and achievements based on actions: completing guided draft, completing free practice, scoring 9/10+, refining and improving, weekly challenge completion, and mastering all 8 draft types.",
+      "files": [
+        "frontend/src/pages/DraftPage.tsx",
+        "frontend/src/storage/localStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-mastery-logic-per-draft-type-consider-a-draft-type-mastered-when-the-user-scores-at-least-8-10-on-3-separate-drafts-of-that-type-reflect-mastery-status-throughout-the-ui-including-the-homepage-style-progress-summary-for-phase-1-and-phase-2",
+      "featureTitle": "Implement mastery logic per draft type: consider a draft type \"MASTERED\" when the user scores at least 8/10 on 3 separate drafts of that type. Reflect mastery status throughout the UI, including the homepage-style progress summary for Phase 1 and Phase 2.",
+      "files": [
+        "frontend/src/components/DraftTypeSelector.tsx",
+        "frontend/src/components/ProgressSummary.tsx",
+        "frontend/src/pages/DraftPage.tsx",
+        "frontend/src/utils/mastery.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-weekly-challenge-feature-show-the-current-weekly-scenario-difficulty-description-allow-accept-challenge-provide-a-dedicated-drafting-submission-flow-and-award-the-specified-xp-plus-a-badge-achievement-progress-indicator-when-completed",
+      "featureTitle": "Add a Weekly Challenge feature: show the current weekly scenario (difficulty, description), allow \"Accept Challenge\", provide a dedicated drafting + submission flow, and award the specified XP plus a badge/achievement progress indicator when completed.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/challenge/WeeklyChallengeCard.tsx",
+        "frontend/src/pages/DraftPage.tsx",
+        "frontend/src/pages/challenge/WeeklyChallengePage.tsx",
+        "frontend/src/storage/localStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-special-practice-modes-a-voice-to-text-drafting-using-the-browser-s-speech-recognition-where-available-with-graceful-fallback-when-unsupported-b-timed-drafting-mode-with-a-configurable-default-30-minute-timer-and-an-exam-simulation-ui-that-can-be-used-in-free-practice-and-weekly-challenge-flows",
+      "featureTitle": "Add special practice modes: (a) Voice-to-text drafting using the browser’s speech recognition where available with graceful fallback when unsupported; (b) Timed drafting mode with a configurable default 30-minute timer and an exam-simulation UI that can be used in Free Practice and Weekly Challenge flows.",
+      "files": [
+        "frontend/src/pages/challenge/WeeklyChallengePage.tsx",
+        "frontend/src/pages/draftType/FreePracticePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-collaborative-review-via-share-link-allow-a-user-to-generate-a-shareable-link-for-a-specific-draft-attempt-shared-view-allows-others-to-add-comments-suggestions-no-real-time-requirement-ensure-basic-access-control-via-an-unguessable-token-in-the-url-and-allow-the-owner-to-revoke-sharing",
+      "featureTitle": "Implement collaborative review via share link: allow a user to generate a shareable link for a specific draft attempt; shared view allows others to add comments/suggestions (no real-time requirement). Ensure basic access control via an unguessable token in the URL and allow the owner to revoke sharing.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/draftType/CompareImprovePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-18"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-optional-canister-backed-sync-endpoints-to-support-shared-links-and-optionally-backup-of-drafts-progress-while-keeping-offline-first-behavior-the-app-must-function-fully-without-sign-in-if-internet-identity-is-used-it-should-only-enhance-cross-device-sync-and-ownership-of-shared-drafts",
+      "featureTitle": "Add optional canister-backed sync endpoints to support shared links and (optionally) backup of drafts/progress while keeping offline-first behavior. The app must function fully without sign-in; if Internet Identity is used, it should only enhance cross-device sync and ownership of shared drafts.",
+      "files": [
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/pages/SettingsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-19"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-settings-page-with-options-to-reset-all-local-data-with-confirmation-export-import-local-data-as-a-json-file-for-backup-toggle-voice-to-text-features-and-choose-whether-to-enable-online-backup-sharing-features",
+      "featureTitle": "Implement a Settings page with options to: reset all local data (with confirmation), export/import local data as a JSON file for backup, toggle voice-to-text features, and choose whether to enable online backup/sharing features.",
+      "files": [
+        "frontend/src/pages/SettingsPage.tsx",
+        "frontend/src/storage/localStore.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-20"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-nexus-integration-as-an-optional-user-configurable-sync-adapter-when-a-draft-type-becomes-mastered-in-draft-master-8-10-on-3-drafts-record-a-mastery-event-that-can-be-exported-json-and-or-sent-to-a-configurable-endpoint-if-the-user-provides-one-in-settings-do-not-hardcode-any-external-api-url",
+      "featureTitle": "Add NEXUS integration as an optional, user-configurable sync adapter: when a draft type becomes MASTERED in Draft Master (>=8/10 on 3 drafts), record a \"mastery event\" that can be exported (JSON) and/or sent to a configurable endpoint if the user provides one in Settings. Do not hardcode any external API URL.",
+      "files": [
+        "frontend/src/pages/SettingsPage.tsx",
+        "frontend/src/storage/localStore.ts",
+        "frontend/src/storage/types.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-21"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-templates-blank-formats-per-draft-type-in-app-and-allow-downloading-those-templates-as-plain-text-and-pdf-clearly-label-them-as-templates-and-keep-them-separate-from-the-practice-scenarios-and-model-drafts",
+      "featureTitle": "Provide templates (blank formats) per draft type in-app and allow downloading those templates as plain text and PDF. Clearly label them as templates and keep them separate from the practice scenarios and model drafts.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/LearnPage.tsx",
+        "frontend/src/pages/learn/TemplatesPage.tsx",
+        "frontend/src/utils/exporters.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-22"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-clause-library-with-at-least-a-starter-set-of-standardized-clauses-organized-by-draft-type-and-purpose-supporting-copy-to-clipboard-and-insert-into-editor-actions-include-the-example-clauses-termination-jurisdiction-force-majeure-as-part-of-the-library",
+      "featureTitle": "Create a Clause Library with at least a starter set of standardized clauses organized by draft type and purpose, supporting copy-to-clipboard and insert-into-editor actions. Include the example clauses (Termination, Jurisdiction, Force Majeure) as part of the library.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/learn/ClauseLibraryPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-23"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-before-after-gallery-section-showing-at-least-a-few-examples-of-weak-vs-improved-drafts-with-highlighted-improvements-added-clause-removed-weak-language-improved-phrasing-keep-these-as-static-learning-examples-not-user-data",
+      "featureTitle": "Add a Before/After Gallery section showing at least a few examples of weak vs improved drafts with highlighted improvements (added clause, removed weak language, improved phrasing). Keep these as static learning examples (not user data).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/LearnPage.tsx",
+        "frontend/src/pages/learn/BeforeAfterGalleryPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-24"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-print-ready-formatting-for-drafts-consistent-margins-headings-and-spacing-suitable-for-legal-documents-provide-a-print-preview-view-for-any-draft-and-ensure-exported-pdfs-use-the-same-formatting",
+      "featureTitle": "Implement print-ready formatting for drafts: consistent margins, headings, and spacing suitable for legal documents; provide a \"Print Preview\" view for any draft and ensure exported PDFs use the same formatting.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/src/utils/exporters.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-25"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-include-static-visual-assets-for-the-app-logo-and-a-small-set-of-badges-icons-under-frontend-public-assets-generated-and-render-them-in-the-ui-logo-in-header-home-badges-in-achievements-challenges",
+      "featureTitle": "Generate and include static visual assets for the app (logo and a small set of badges/icons) under frontend/public/assets/generated, and render them in the UI (logo in header/home, badges in achievements/challenges).",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/components/AppHeader.tsx",
+        "frontend/src/components/challenge/WeeklyChallengeCard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "invite-links@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-26"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
